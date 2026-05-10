@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Le numérique vient jusqu'à vous : accompagnement numérique, création web, vidéos de présentation et petits services de proximité en vélo électrique autour de Rouen et villages." />
+  <title>Michel Quiñones | Le numérique vient jusqu'à vous</title>
+
+  <!-- Polices & icônes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #61d394;
+      --green-dark: #1f7a4c;
+      --blue: #38bdf8;
+      --yellow: #ffd166;
+      --orange: #ff9f1c;
+      --purple: #a78bfa;
+      --dark: #07111f;
+      --dark-2: #0c1b2e;
+      --white: #ffffff;
+      --soft: #eaf7f0;
+      --muted: #a8b3c7;
+      --glass: rgba(255, 255, 255, 0.09);
+      --glass-2: rgba(255, 255, 255, 0.14);
+      --border: rgba(255, 255, 255, 0.16);
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 28px;
+      --transition: .35s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(97, 211, 148, .18), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(56, 189, 248, .18), transparent 30%),
+        linear-gradient(180deg, #07111f 0%, #0b1626 45%, #07111f 100%);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Fond animé */
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      opacity: .18;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(18px);
+      opacity: .48;
+      z-index: -1;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+    .orb.one { width: 280px; height: 280px; left: -80px; top: 120px; background: rgba(97,211,148,.24); }
+    .orb.two { width: 360px; height: 360px; right: -120px; top: 260px; background: rgba(56,189,248,.2); animation-delay: 2s; }
+    .orb.three { width: 240px; height: 240px; left: 20%; bottom: 80px; background: rgba(255,209,102,.16); animation-delay: 4s; }
+    @keyframes float { to { transform: translate3d(35px, -45px, 0) scale(1.08); } }
+
+    /* Navigation */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 28px;
+      transition: var(--transition);
+    }
+    .topbar.scrolled {
+      background: rgba(7,17,31,.84);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 12px 35px rgba(0,0,0,.22);
+    }
+    .nav-inner {
+      max-width: 1240px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+    }
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: 0 12px 30px rgba(97,211,148,.25);
+      color: #06111f;
+      font-size: 1.25rem;
+    }
+    .brand small { display: block; font-family: 'Poppins'; font-weight: 500; color: var(--muted); text-transform: none; letter-spacing: 0; }
+    .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; }
+    .nav-links a {
+      font-size: .82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: rgba(255,255,255,.84);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #06111f !important;
+      box-shadow: 0 16px 35px rgba(56,189,248,.2);
+    }
+    .hamburger { display: none; background: none; border: 0; color: white; font-size: 1.5rem; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 140px 24px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7,17,31,.96), rgba(7,17,31,.65), rgba(7,17,31,.9)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2200&auto=format&fit=crop') center/cover fixed;
+      z-index: -3;
+    }
+    .hero-grid {
+      width: min(1240px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 42px;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: var(--soft);
+      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.7rem, 7vw, 6.8rem);
+      line-height: .91;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--green), var(--blue), var(--yellow));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero p.lead {
+      max-width: 720px;
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+      color: rgba(255,255,255,.84);
+      margin-bottom: 30px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 34px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #06111f;
+      box-shadow: 0 22px 45px rgba(97,211,148,.25);
+    }
+    .btn-secondary { background: rgba(255,255,255,.08); backdrop-filter: blur(10px); }
+    .btn:hover { transform: translateY(-4px); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      max-width: 760px;
+    }
+    .stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .stat strong { display: block; font-size: 1.35rem; color: var(--green); font-family: 'Montserrat'; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+    }
+    .phone-card, .route-card, .pricing-mini, .bike-card {
+      position: absolute;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+    .bike-card {
+      inset: 40px 0 60px 70px;
+      background:
+        linear-gradient(180deg, rgba(7,17,31,.2), rgba(7,17,31,.8)),
+        url('https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1600&auto=format&fit=crop') center/cover;
+      animation: revealUp .9s ease both;
+    }
+    .bike-card::after {
+      content: "🚲 Service mobile en vélo électrique";
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      background: rgba(7,17,31,.78);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+    .phone-card {
+      width: 230px;
+      left: 0;
+      top: 16px;
+      padding: 18px;
+      animation: floatCard 5s ease-in-out infinite alternate;
+    }
+    .phone-card i { color: var(--blue); font-size: 2rem; margin-bottom: 8px; }
+    .route-card {
+      width: 250px;
+      right: 8px;
+      top: 95px;
+      padding: 18px;
+      animation: floatCard 6s ease-in-out infinite alternate-reverse;
+    }
+    .pricing-mini {
+      width: 290px;
+      left: 18px;
+      bottom: 20px;
+      padding: 18px;
+      animation: floatCard 6s ease-in-out infinite alternate;
+    }
+    .pricing-mini b { color: var(--yellow); font-size: 1.7rem; }
+    @keyframes floatCard { to { transform: translateY(-14px); } }
+    @keyframes revealUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Sections */
+    section { padding: 105px 24px; }
+    .wrap { width: min(1240px, 100%); margin: auto; }
+    .section-head { text-align: center; margin-bottom: 58px; }
+    .tag {
+      display: inline-block;
+      color: var(--green);
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: .8rem;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+    .section-head p { max-width: 780px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
+
+    /* Services */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .service-card {
+      position: relative;
+      padding: 28px;
+      min-height: 330px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at 20% 20%, rgba(97,211,148,.24), transparent 32%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(97,211,148,.55);
+      box-shadow: 0 25px 60px rgba(0,0,0,.3);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .icon-bubble {
+      width: 70px;
+      height: 70px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 1.85rem;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,.11);
+      border: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .service-card h3 { font-size: 1.25rem; margin-bottom: 14px; position: relative; z-index: 1; }
+    .service-card p { color: var(--muted); position: relative; z-index: 1; }
+    .service-card .learn { position: absolute; left: 28px; bottom: 24px; color: var(--green); font-weight: 800; z-index: 1; }
+
+    /* Concept */
+    .concept {
+      background: linear-gradient(135deg, rgba(97,211,148,.13), rgba(56,189,248,.1));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+    .concept-photo {
+      min-height: 540px;
+      border-radius: 42px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(7,17,31,.05), rgba(7,17,31,.78)),
+        url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop') center/cover;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .concept-photo .caption {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      right: 24px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(7,17,31,.72);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.09);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .step:hover { transform: translateX(8px); border-color: rgba(97,211,148,.42); }
+    .step-number {
+      width: 62px;
+      height: 62px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #06111f;
+      font-family: 'Montserrat';
+      font-weight: 900;
+      font-size: 1.35rem;
+    }
+    .step h3 { margin-bottom: 6px; }
+    .step p { color: var(--muted); }
+
+    /* Tarifs */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+    }
+    .price-card {
+      padding: 36px;
+      border-radius: 38px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card.featured {
+      background: linear-gradient(135deg, rgba(97,211,148,.22), rgba(56,189,248,.14));
+      border-color: rgba(97,211,148,.45);
+    }
+    .price-card h3 { font-size: 1.45rem; margin-bottom: 12px; }
+    .price { font-family: 'Montserrat'; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; color: var(--yellow); margin: 22px 0; }
+    .price small { font-size: 1.1rem; color: white; }
+    .check-list { list-style: none; display: grid; gap: 12px; color: rgba(255,255,255,.84); }
+    .check-list li { display: flex; gap: 10px; align-items: flex-start; }
+    .check-list i { color: var(--green); margin-top: 6px; }
+    .recharge {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,209,102,.14);
+      border: 1px solid rgba(255,209,102,.32);
+      color: #fff3c4;
+      font-weight: 700;
+    }
+
+    /* Réalisations */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+    }
+    .project-card {
+      border-radius: 38px;
+      overflow: hidden;
+      background: rgba(255,255,255,.1);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .project-card:hover { transform: translateY(-10px); border-color: rgba(56,189,248,.42); }
+    .project-media {
+      min-height: 255px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .project-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(7,17,31,.72));
+    }
+    .project-content { padding: 28px; }
+    .project-content h3 { font-size: 1.55rem; margin-bottom: 10px; }
+    .project-content p { color: var(--muted); margin-bottom: 18px; }
+    .link-line {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      word-break: break-all;
+      color: var(--green);
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    .link-line:hover { background: rgba(97,211,148,.12); }
+
+    /* Zone confiance */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .trust-card {
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+    }
+    .trust-card i { font-size: 2rem; color: var(--green); margin-bottom: 16px; }
+    .trust-card p { color: var(--muted); margin-top: 8px; }
+
+    /* Contact */
+    .contact {
+      padding-bottom: 60px;
+    }
+    .contact-panel {
+      border-radius: 46px;
+      padding: 44px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(97,211,148,.22), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.06));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .contact-panel h2 { margin-bottom: 18px; }
+    .contact-panel p { color: rgba(255,255,255,.82); max-width: 760px; }
+    .contact-buttons { display: grid; gap: 14px; }
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 17px 18px;
+      border-radius: 22px;
+      background: rgba(7,17,31,.56);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      font-weight: 700;
+      word-break: break-word;
+    }
+    .contact-btn:hover { transform: translateX(8px); background: rgba(97,211,148,.14); }
+    .contact-btn i { color: var(--green); font-size: 1.3rem; width: 28px; text-align: center; }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: rgba(7,17,31,.5);
+    }
+
+    /* Boutons flottants */
+    .float-actions {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      gap: 12px;
+      z-index: 1200;
+    }
+    .float-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: #06111f;
+      box-shadow: 0 18px 40px rgba(0,0,0,.3);
+      font-size: 1.35rem;
+      transition: var(--transition);
+    }
+    .float-btn:hover { transform: translateY(-5px) rotate(4deg); }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 22px;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(18px);
+      z-index: 3000;
+    }
+    .modal.active { display: grid; }
+    .modal-box {
+      width: min(980px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 36px;
+      background: #f8fafc;
+      color: #07111f;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      animation: modalIn .25s ease both;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: scale(.96) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .modal-img { min-height: 440px; background-size: cover; background-position: center; }
+    .modal-content { padding: 34px; position: relative; }
+    .close {
+      position: sticky;
+      float: right;
+      top: 0;
+      border: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: #07111f;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .modal-content h3 { font-size: 2rem; margin-bottom: 12px; font-family: 'Montserrat'; }
+    .modal-content p { color: #344256; margin-bottom: 18px; }
+    .modal-content ul { margin-left: 18px; color: #344256; }
+    .modal-content li { margin-bottom: 10px; }
+
+    /* Animations apparition */
+    .reveal { opacity: 0; transform: translateY(28px); transition: .8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .hero-grid, .concept-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 460px; }
+      .bike-card { inset: 30px 20px 40px 20px; }
+      .service-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 800px) {
+      .topbar { padding: 12px 16px; }
+      .hamburger { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(7,17,31,.96);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 18px;
+      }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 120px; }
+      .hero h1 { letter-spacing: -2px; }
+      .hero-stats, .pricing-grid, .projects, .trust-grid { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      section { padding: 76px 18px; }
+      .modal-box { grid-template-columns: 1fr; }
+      .modal-img { min-height: 240px; }
+      .contact-panel { padding: 28px; border-radius: 32px; }
+      .float-actions { right: 14px; bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <!-- Navigation fixe -->
+  <header class="topbar" id="topbar">
+    <div class="nav-inner">
+      <a href="#accueil" class="brand" aria-label="Accueil">
+        <span class="brand-badge"><i class="fa-solid fa-bicycle"></i></span>
+        <span>Michel Quiñones <small>Numérique mobile & proximité</small></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#concept">Concept</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="accueil" class="hero">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <span class="kicker"><i class="fa-solid fa-leaf"></i> Service humain, mobile et écologique</span>
+        <h1>Le numérique <span class="gradient-text">vient jusqu'à vous</span></h1>
+        <p class="lead">
+          Accompagnement numérique, création de pages web, vidéos de présentation et petits services de proximité,
+          avec une approche simple, accessible et bienveillante.
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary"><i class="fa-solid fa-sparkles"></i> Découvrir les services</a>
+          <a href="#tarifs" class="btn btn-secondary"><i class="fa-solid fa-hand-holding-heart"></i> Voir les tarifs sociaux</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>15€/h</strong><span>avec hébergement offert</span></div>
+          <div class="stat"><strong>25€/h</strong><span>sans hébergement</span></div>
+          <div class="stat"><strong>10+</strong><span>pages créées pour apprendre et aider</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="bike-card"></div>
+        <div class="phone-card">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <h3>Débutants acceptés</h3>
+          <p>Ordinateur, smartphone, Internet, e-mail, IA, démarches simples.</p>
+        </div>
+        <div class="route-card">
+          <h3><i class="fa-solid fa-route" style="color:var(--green)"></i> Sur réservation</h3>
+          <p>Interventions en quartiers, communes, villages ou commerces.</p>
+        </div>
+        <div class="pricing-mini">
+          <p><b>Recharge vélo</b><br>Accès à une prise demandé pendant le temps de travail.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Ce que je propose</span>
+        <h2>Des services utiles, simples et concrets</h2>
+        <p>Une aide de terrain pour les personnes, commerces ou associations qui veulent avancer sans se perdre dans la technique.</p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card reveal" data-modal="modal-num">
+          <div class="icon-bubble" style="color:var(--blue)"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Initiation numérique</h3>
+          <p>Ordinateur, smartphone, Internet, e-mail, démarches simples, sécurité numérique et découverte de l'IA.</p>
+          <span class="learn">Détails →</span>
+        </article>
+
+        <article class="service-card reveal" data-modal="modal-web">
+          <div class="icon-bubble" style="color:var(--green)"><i class="fa-solid fa-globe"></i></div>
+          <h3>Création web & visibilité</h3>
+          <p>Pages web simples, sites vitrines, accompagnement à la présence en ligne, réseaux sociaux et apprentissage pratique.</p>
+          <span class="learn">Détails →</span>
+        </article>
+
+        <article class="service-card reveal" data-modal="modal-video">
+          <div class="icon-bubble" style="color:var(--orange)"><i class="fa-solid fa-video"></i></div>
+          <h3>Vidéo & communication</h3>
+          <p>Présentation de commerce, mini interviews, vidéos TikTok, YouTube, Instagram et montage simple mais soigné.</p>
+          <span class="learn">Détails →</span>
+        </article>
+
+        <article class="service-card reveal" data-modal="modal-brico">
+          <div class="icon-bubble" style="color:var(--purple)"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3>Petits services de proximité</h3>
+          <p>Petits dépannages, installations simples, conseils, aide légère à domicile et soutien aux personnes isolées.</p>
+          <span class="learn">Détails →</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept -->
+  <section id="concept" class="concept">
+    <div class="wrap concept-grid">
+      <div class="concept-photo reveal">
+        <div class="caption">
+          <h3>🚲 Une activité mobile et écologique</h3>
+          <p>Je démarre léger : vélo électrique, sacoches, ordinateurs, téléphone, connexion Internet et petit outillage.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <span class="tag">Comment ça fonctionne</span>
+        <h2>Je viens à votre rencontre</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div><h3>Vous me contactez</h3><p>Par téléphone, message, LinkedIn ou réseau social pour expliquer votre besoin.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div><h3>Nous définissons l'intervention</h3><p>Numérique, site web, vidéo, aide technique ou petits services simples.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div><h3>Je me déplace en vélo électrique</h3><p>Dans la mesure du possible, sur un trajet sécurisé et organisé à l'avance.</p></div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div><h3>Nous avançons ensemble</h3><p>Je vous accompagne à votre rythme, avec pédagogie, patience et solutions concrètes.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tarifs -->
+  <section id="tarifs">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Tarifs sociaux & accessibles</span>
+        <h2>Deux formules simples</h2>
+        <p>Le temps facturé correspond uniquement au temps de travail réel. Le temps de sommeil, de repos ou d'hébergement n'est pas facturé.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card featured reveal">
+          <h3>❤️ Tarif social avec hébergement</h3>
+          <p>Pour les interventions d'une journée ou plus, avec accueil gratuit chez vous ou installation possible d'une petite tente dans un jardin sécurisé.</p>
+          <div class="price">15€ <small>/ heure</small></div>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i> Hébergement offert : maison, pièce disponible, jardin ou tente.</li>
+            <li><i class="fa-solid fa-check"></i> Facturation uniquement pendant le temps de travail réel.</li>
+            <li><i class="fa-solid fa-check"></i> Adapté aux personnes, familles, villages ou projets avec budget limité.</li>
+            <li><i class="fa-solid fa-check"></i> Idéal pour accompagnement numérique, création web, vidéo ou petits services.</li>
+          </ul>
+          <div class="recharge"><i class="fa-solid fa-bolt"></i> Accès à une prise demandé pour recharger la batterie du vélo pendant le temps de travail.</div>
+        </article>
+
+        <article class="price-card reveal">
+          <h3>💼 Tarif standard sans hébergement</h3>
+          <p>Pour une intervention classique sans logement ou accueil particulier.</p>
+          <div class="price">25€ <small>/ heure</small></div>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i> Pas d'hébergement nécessaire.</li>
+            <li><i class="fa-solid fa-check"></i> Facturation uniquement pendant le temps de travail réel.</li>
+            <li><i class="fa-solid fa-check"></i> Adapté aux particuliers, commerces, associations et petites structures.</li>
+            <li><i class="fa-solid fa-check"></i> Intervention sur réservation selon distance, autonomie et organisation du trajet.</li>
+          </ul>
+          <div class="recharge"><i class="fa-solid fa-bolt"></i> Accès à une prise demandé pour recharger la batterie du vélo pendant le temps de travail.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Réalisations -->
+  <section id="realisations">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Exemples de réalisations</span>
+        <h2>Des modèles de présentation web</h2>
+        <p>
+          Ces exemples permettent de visualiser le type de présentation moderne et professionnelle
+          qu'il est possible de créer pour un commerce, une association, un projet ou une activité locale.
+          Ces réalisations ont également servi de pratique et d'apprentissage dans mon évolution web.
+        </p>
+      </div>
+
+      <div class="projects">
+        <article class="project-card reveal">
+          <div class="project-media" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop')"></div>
+          <div class="project-content">
+            <h3>Projet Diakarlo</h3>
+            <p>Page de présentation avec vidéo, créée pour valoriser une activité et mettre en pratique mes apprentissages web.</p>
+            <a class="link-line" href="https://grial71.github.io/diakarlo-site/#video" target="_blank" rel="noopener">https://grial71.github.io/diakarlo-site/#video</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-media" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop')"></div>
+          <div class="project-content">
+            <h3>Projet NaniWeb</h3>
+            <p>Page web de présentation et galerie, pensée pour montrer une activité, des visuels et une navigation simple.</p>
+            <a class="link-line" href="https://grial71.github.io/NaniWeb/" target="_blank" rel="noopener">https://grial71.github.io/NaniWeb/</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pourquoi choisir -->
+  <section id="confiance">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Pourquoi cette approche ?</span>
+        <h2>Proximité, patience et solutions pratiques</h2>
+      </div>
+      <div class="trust-grid">
+        <article class="trust-card reveal">
+          <i class="fa-solid fa-heart"></i>
+          <h3>Approche humaine</h3>
+          <p>Je prends le temps d'expliquer simplement, sans jugement, surtout pour les personnes qui débutent.</p>
+        </article>
+        <article class="trust-card reveal">
+          <i class="fa-solid fa-seedling"></i>
+          <h3>Mobilité écologique</h3>
+          <p>Déplacements en vélo électrique lorsque les conditions de distance et de sécurité le permettent.</p>
+        </article>
+        <article class="trust-card reveal">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3>Créativité concrète</h3>
+          <p>Sites, vidéos, réseaux sociaux, petits conseils : l'objectif est de rendre les choses utiles rapidement.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <div>
+          <span class="tag">Contact & réservation</span>
+          <h2>Parlons de votre besoin</h2>
+          <p>
+            Vous avez besoin d'aide pour utiliser le numérique, créer une page web, présenter votre commerce,
+            faire une petite vidéo ou résoudre un petit blocage technique ? Contactez-moi pour organiser une intervention.
+          </p>
+        </div>
+        <div class="contact-buttons">
+          <a class="contact-btn" href="tel:+33753205355"><i class="fa-solid fa-phone"></i> 07 53 20 53 55</a>
+          <a class="contact-btn" href="https://www.linkedin.com/in/michel-quinones-254118287/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> https://www.linkedin.com/in/michel-quinones-254118287/</a>
+          <a class="contact-btn" href="https://grial71.github.io/diakarlo-site/#video" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir Diakarlo</a>
+          <a class="contact-btn" href="https://grial71.github.io/NaniWeb/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir NaniWeb</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Michel Quiñones Cobos — Le numérique vient jusqu'à vous. Service mobile, humain et écologique.</p>
+  </footer>
+
+  <!-- Boutons flottants -->
+  <div class="float-actions" aria-label="Actions rapides">
+    <a class="float-btn" href="tel:+33753205355" title="Appeler"><i class="fa-solid fa-phone"></i></a>
+    <a class="float-btn" href="#contact" title="Contact"><i class="fa-solid fa-paper-plane"></i></a>
+  </div>
+
+  <!-- Modales services -->
+  <div class="modal" id="modal-num">
+    <div class="modal-box">
+      <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1400&auto=format&fit=crop')"></div>
+      <div class="modal-content">
+        <button class="close" data-close="modal-num">×</button>
+        <h3>Initiation numérique</h3>
+        <p>Un accompagnement calme et progressif pour comprendre les outils du quotidien.</p>
+        <ul>
+          <li>Utiliser un ordinateur, un smartphone ou une tablette.</li>
+          <li>Créer et gérer une adresse e-mail.</li>
+          <li>Comprendre Internet, les mots de passe et la sécurité.</li>
+          <li>Découvrir ChatGPT et les outils d'intelligence artificielle simplement.</li>
+          <li>Éviter les arnaques numériques et les pièges courants.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-web">
+    <div class="modal-box">
+      <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1400&auto=format&fit=crop')"></div>
+      <div class="modal-content">
+        <button class="close" data-close="modal-web">×</button>
+        <h3>Création web & visibilité</h3>
+        <p>Pour présenter une activité, une association, un commerce ou apprendre à créer une page simple.</p>
+        <ul>
+          <li>Création de pages web simples et modernes.</li>
+          <li>Apprentissage pratique avec VS Code et GitHub Pages.</li>
+          <li>Conseils pour améliorer une présentation en ligne.</li>
+          <li>Accompagnement réseaux sociaux et image professionnelle.</li>
+          <li>Exemples visibles : Diakarlo et NaniWeb.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-video">
+    <div class="modal-box">
+      <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1400&auto=format&fit=crop')"></div>
+      <div class="modal-content">
+        <button class="close" data-close="modal-video">×</button>
+        <h3>Vidéo & communication</h3>
+        <p>Mettre en valeur une activité locale avec des vidéos simples, humaines et faciles à partager.</p>
+        <ul>
+          <li>Vidéo de présentation d'un commerce ou d'une association.</li>
+          <li>Mini interview ou témoignage.</li>
+          <li>Montage vidéo amateur qualitatif.</li>
+          <li>Contenus pour TikTok, Instagram, YouTube ou LinkedIn.</li>
+          <li>Conseils pour raconter une histoire claire et attractive.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-brico">
+    <div class="modal-box">
+      <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop')"></div>
+      <div class="modal-content">
+        <button class="close" data-close="modal-brico">×</button>
+        <h3>Petits services de proximité</h3>
+        <p>Des petits coups de main simples, en complément de l'accompagnement numérique.</p>
+        <ul>
+          <li>Installation ou vérification informatique basique.</li>
+          <li>Petits conseils techniques à domicile.</li>
+          <li>Aide légère, uniquement pour les petits besoins non réglementés.</li>
+          <li>Orientation si le besoin nécessite un professionnel qualifié.</li>
+          <li>Soutien aux personnes âgées, isolées ou débutantes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Navigation fixe : effet au scroll
+    const topbar = document.getElementById('topbar');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Animation d'apparition au scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.13 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Modales services
+    document.querySelectorAll('[data-modal]').forEach(card => {
+      card.addEventListener('click', () => {
+        const modal = document.getElementById(card.dataset.modal);
+        modal.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.close).classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', e => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
+      }
+    });
+  </script>
+</body>
+</html>
