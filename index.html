@@ -49,7 +49,6 @@
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-    /* Fond animé */
     .noise {
       position: fixed;
       inset: 0;
@@ -71,6 +70,51 @@
     .orb.two { width: 360px; height: 360px; right: -120px; top: 260px; background: rgba(56,189,248,.2); animation-delay: 2s; }
     .orb.three { width: 240px; height: 240px; left: 20%; bottom: 80px; background: rgba(255,209,102,.16); animation-delay: 4s; }
     @keyframes float { to { transform: translate3d(35px, -45px, 0) scale(1.08); } }
+
+    /* Google Traduction : cacher les éléments parasites */
+    body > .skiptranslate { display: none !important; }
+    body { top: 0 !important; }
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    .goog-te-gadget { font-size: 0 !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget span { display: none !important; }
+    #google_translate_element select {
+      width: 100%;
+      max-width: 250px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(7,17,31,.92);
+      color: white;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .translate-floating {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 1200;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(7,17,31,.82);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+    }
+    .translate-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 8px;
+    }
+    .translate-title i { color: var(--green); }
 
     /* Navigation */
     .topbar {
@@ -287,7 +331,6 @@
     @keyframes floatCard { to { transform: translateY(-14px); } }
     @keyframes revealUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Sections */
     section { padding: 105px 24px; }
     .wrap { width: min(1240px, 100%); margin: auto; }
     .section-head { text-align: center; margin-bottom: 58px; }
@@ -309,7 +352,6 @@
     }
     .section-head p { max-width: 780px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
 
-    /* Services */
     .service-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -357,7 +399,6 @@
     .service-card p { color: var(--muted); position: relative; z-index: 1; }
     .service-card .learn { position: absolute; left: 28px; bottom: 24px; color: var(--green); font-weight: 800; z-index: 1; }
 
-    /* Concept */
     .concept {
       background: linear-gradient(135deg, rgba(97,211,148,.13), rgba(56,189,248,.1));
       border-top: 1px solid var(--border);
@@ -390,10 +431,7 @@
       border: 1px solid var(--border);
       backdrop-filter: blur(12px);
     }
-    .steps {
-      display: grid;
-      gap: 16px;
-    }
+    .steps { display: grid; gap: 16px; }
     .step {
       display: grid;
       grid-template-columns: 62px 1fr;
@@ -421,7 +459,6 @@
     .step h3 { margin-bottom: 6px; }
     .step p { color: var(--muted); }
 
-    /* Tarifs */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -456,7 +493,6 @@
       font-weight: 700;
     }
 
-    /* Réalisations */
     .projects {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -499,7 +535,6 @@
     }
     .link-line:hover { background: rgba(97,211,148,.12); }
 
-    /* Zone confiance */
     .trust-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -514,10 +549,7 @@
     .trust-card i { font-size: 2rem; color: var(--green); margin-bottom: 16px; }
     .trust-card p { color: var(--muted); margin-top: 8px; }
 
-    /* Contact */
-    .contact {
-      padding-bottom: 60px;
-    }
+    .contact { padding-bottom: 60px; }
     .contact-panel {
       border-radius: 46px;
       padding: 44px;
@@ -557,7 +589,6 @@
       background: rgba(7,17,31,.5);
     }
 
-    /* Boutons flottants */
     .float-actions {
       position: fixed;
       right: 22px;
@@ -580,7 +611,6 @@
     }
     .float-btn:hover { transform: translateY(-5px) rotate(4deg); }
 
-    /* Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -625,11 +655,9 @@
     .modal-content ul { margin-left: 18px; color: #344256; }
     .modal-content li { margin-bottom: 10px; }
 
-    /* Animations apparition */
     .reveal { opacity: 0; transform: translateY(28px); transition: .8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* Responsive */
     @media (max-width: 1080px) {
       .hero-grid, .concept-grid, .contact-panel { grid-template-columns: 1fr; }
       .hero-visual { min-height: 460px; }
@@ -664,6 +692,8 @@
       .modal-img { min-height: 240px; }
       .contact-panel { padding: 28px; border-radius: 32px; }
       .float-actions { right: 14px; bottom: 14px; }
+      .translate-floating { left: 14px; right: 84px; bottom: 14px; }
+      #google_translate_element select { max-width: 100%; }
     }
   </style>
 </head>
@@ -672,6 +702,12 @@
   <div class="orb one"></div>
   <div class="orb two"></div>
   <div class="orb three"></div>
+
+  <!-- Google Traduction flottant -->
+  <div class="translate-floating">
+    <div class="translate-title"><i class="fa-solid fa-language"></i> Traduction</div>
+    <div id="google_translate_element"></div>
+  </div>
 
   <!-- Navigation fixe -->
   <header class="topbar" id="topbar">
@@ -862,8 +898,8 @@
         <article class="project-card reveal">
           <div class="project-media" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop')"></div>
           <div class="project-content">
-            <h3>Projet Diakarlo</h3>
-            <p>Page de présentation avec vidéo, créée pour valoriser une activité et mettre en pratique mes apprentissages web.</p>
+            <h3>Modèle Diakarlo</h3>
+            <p>Exemple de page de présentation avec vidéo, utile pour montrer comment valoriser une activité, un commerce ou un projet local.</p>
             <a class="link-line" href="https://grial71.github.io/diakarlo-site/#video" target="_blank" rel="noopener">https://grial71.github.io/diakarlo-site/#video</a>
           </div>
         </article>
@@ -871,8 +907,8 @@
         <article class="project-card reveal">
           <div class="project-media" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop')"></div>
           <div class="project-content">
-            <h3>Projet NaniWeb</h3>
-            <p>Page web de présentation et galerie, pensée pour montrer une activité, des visuels et une navigation simple.</p>
+            <h3>Modèle NaniWeb</h3>
+            <p>Exemple de page web de présentation et galerie, pensée pour montrer une activité, des visuels et une navigation simple.</p>
             <a class="link-line" href="https://grial71.github.io/NaniWeb/" target="_blank" rel="noopener">https://grial71.github.io/NaniWeb/</a>
           </div>
         </article>
@@ -922,8 +958,8 @@
         <div class="contact-buttons">
           <a class="contact-btn" href="tel:+33753205355"><i class="fa-solid fa-phone"></i> 07 53 20 53 55</a>
           <a class="contact-btn" href="https://www.linkedin.com/in/michel-quinones-254118287/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> https://www.linkedin.com/in/michel-quinones-254118287/</a>
-          <a class="contact-btn" href="https://grial71.github.io/diakarlo-site/#video" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir Diakarlo</a>
-          <a class="contact-btn" href="https://grial71.github.io/NaniWeb/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir NaniWeb</a>
+          <a class="contact-btn" href="https://grial71.github.io/diakarlo-site/#video" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir le modèle Diakarlo</a>
+          <a class="contact-btn" href="https://grial71.github.io/NaniWeb/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Voir le modèle NaniWeb</a>
         </div>
       </div>
     </div>
@@ -1066,6 +1102,18 @@
         document.querySelectorAll('.modal.active').forEach(m => m.classList.remove('active'));
       }
     });
+
+    // Google Traduction : français, anglais, espagnol
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'fr,en,es',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
   </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
