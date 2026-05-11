@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Le numérique vient jusqu'à vous : accompagnement numérique, création web, vidéos de présentation et petits services de proximité en vélo électrique autour de Rouen et villages." />
+  <meta name="description" content="Le numérique vient jusqu'à vous : accompagnement numérique, création web, vidéos de présentation, restauration de photos anciennes et petits services de proximité en vélo électrique autour de Rouen et villages." />
   <title>Michel Quiñones | Le numérique vient jusqu'à vous</title>
 
   <!-- Polices & icônes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
@@ -20,6 +20,7 @@
       --yellow: #ffd166;
       --orange: #ff9f1c;
       --purple: #a78bfa;
+      --rose: #fb7185;
       --dark: #07111f;
       --dark-2: #0c1b2e;
       --white: #ffffff;
@@ -48,6 +49,7 @@
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
+    ::selection { background: var(--green); color: #06111f; }
 
     .noise {
       position: fixed;
@@ -74,18 +76,9 @@
     /* Google Traduction : version stable comme le site Nani */
     body > .skiptranslate,
     .goog-te-banner-frame,
-    iframe.goog-te-banner-frame {
-      display: none !important;
-    }
-
+    iframe.goog-te-banner-frame { display: none !important; }
     body { top: 0 !important; }
-
-    .goog-te-gadget {
-      font-family: var(--font-body) !important;
-      color: #fff !important;
-      font-size: 0 !important;
-    }
-
+    .goog-te-gadget { font-family: 'Poppins', sans-serif !important; color: #fff !important; font-size: 0 !important; }
     .goog-te-combo {
       background: rgba(7,17,31,.96) !important;
       color: #fff !important;
@@ -95,21 +88,12 @@
       font-size: 12px !important;
       outline: none !important;
       cursor: pointer !important;
-      font-family: var(--font-body) !important;
+      font-family: 'Poppins', sans-serif !important;
       font-weight: 700 !important;
       max-width: 210px;
     }
-
-    .goog-te-combo option {
-      background: #07111f;
-      color: #fff;
-    }
-
-    .goog-logo-link,
-    .goog-te-gadget span,
-    .goog-te-gadget img {
-      display: none !important;
-    }
+    .goog-te-combo option { background: #07111f; color: #fff; }
+    .goog-logo-link, .goog-te-gadget span, .goog-te-gadget img { display: none !important; }
 
     .translate-floating {
       position: fixed;
@@ -126,7 +110,6 @@
       visibility: visible !important;
       opacity: 1 !important;
     }
-
     .translate-title {
       display: flex;
       align-items: center;
@@ -138,7 +121,6 @@
       letter-spacing: .8px;
       margin-bottom: 8px;
     }
-
     .translate-title i { color: var(--green); }
 
     /* Navigation */
@@ -186,14 +168,15 @@
       font-size: 1.25rem;
     }
     .brand small { display: block; font-family: 'Poppins'; font-weight: 500; color: var(--muted); text-transform: none; letter-spacing: 0; }
-    .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 16px; list-style: none; }
     .nav-links a {
-      font-size: .82rem;
+      font-size: .78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .7px;
       color: rgba(255,255,255,.84);
       transition: var(--transition);
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--green); }
     .nav-cta {
@@ -285,9 +268,9 @@
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(4, minmax(0,1fr));
       gap: 12px;
-      max-width: 760px;
+      max-width: 860px;
     }
     .stat {
       padding: 18px;
@@ -299,11 +282,8 @@
     .stat strong { display: block; font-size: 1.35rem; color: var(--green); font-family: 'Montserrat'; }
     .stat span { color: var(--muted); font-size: .9rem; }
 
-    .hero-visual {
-      position: relative;
-      min-height: 560px;
-    }
-    .phone-card, .route-card, .pricing-mini, .bike-card {
+    .hero-visual { position: relative; min-height: 560px; }
+    .phone-card, .route-card, .pricing-mini, .memory-mini, .bike-card {
       position: absolute;
       border-radius: var(--radius);
       background: rgba(255,255,255,.12);
@@ -330,29 +310,13 @@
       border-radius: 999px;
       font-weight: 800;
     }
-    .phone-card {
-      width: 230px;
-      left: 0;
-      top: 16px;
-      padding: 18px;
-      animation: floatCard 5s ease-in-out infinite alternate;
-    }
+    .phone-card { width: 230px; left: 0; top: 16px; padding: 18px; animation: floatCard 5s ease-in-out infinite alternate; }
     .phone-card i { color: var(--blue); font-size: 2rem; margin-bottom: 8px; }
-    .route-card {
-      width: 250px;
-      right: 8px;
-      top: 95px;
-      padding: 18px;
-      animation: floatCard 6s ease-in-out infinite alternate-reverse;
-    }
-    .pricing-mini {
-      width: 290px;
-      left: 18px;
-      bottom: 20px;
-      padding: 18px;
-      animation: floatCard 6s ease-in-out infinite alternate;
-    }
-    .pricing-mini b { color: var(--yellow); font-size: 1.7rem; }
+    .route-card { width: 250px; right: 8px; top: 95px; padding: 18px; animation: floatCard 6s ease-in-out infinite alternate-reverse; }
+    .pricing-mini { width: 290px; left: 18px; bottom: 20px; padding: 18px; animation: floatCard 6s ease-in-out infinite alternate; }
+    .memory-mini { width: 285px; right: 0; bottom: 55px; padding: 18px; animation: floatCard 7s ease-in-out infinite alternate-reverse; }
+    .memory-mini b, .pricing-mini b { color: var(--yellow); font-size: 1.4rem; }
+    .memory-mini i { color: var(--rose); margin-right: 6px; }
     @keyframes floatCard { to { transform: translateY(-14px); } }
     @keyframes revealUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -375,17 +339,17 @@
       letter-spacing: -2px;
       text-transform: uppercase;
     }
-    .section-head p { max-width: 780px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
+    .section-head p { max-width: 840px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 18px;
     }
     .service-card {
       position: relative;
       padding: 28px;
-      min-height: 330px;
+      min-height: 340px;
       background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -401,6 +365,7 @@
       opacity: 0;
       transition: var(--transition);
     }
+    .service-card.memory::before { background: radial-gradient(circle at 20% 20%, rgba(251,113,133,.28), transparent 35%); }
     .service-card:hover {
       transform: translateY(-12px);
       border-color: rgba(97,211,148,.55);
@@ -420,9 +385,10 @@
       position: relative;
       z-index: 1;
     }
-    .service-card h3 { font-size: 1.25rem; margin-bottom: 14px; position: relative; z-index: 1; }
-    .service-card p { color: var(--muted); position: relative; z-index: 1; }
+    .service-card h3 { font-size: 1.16rem; margin-bottom: 14px; position: relative; z-index: 1; }
+    .service-card p { color: var(--muted); position: relative; z-index: 1; font-size: .95rem; }
     .service-card .learn { position: absolute; left: 28px; bottom: 24px; color: var(--green); font-weight: 800; z-index: 1; }
+    .service-card.memory .learn { color: var(--rose); }
 
     .concept {
       background: linear-gradient(135deg, rgba(97,211,148,.13), rgba(56,189,248,.1));
@@ -518,6 +484,147 @@
       font-weight: 700;
     }
 
+    /* Souvenirs / restauration photo */
+    .memory-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(251,113,133,.16), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(255,209,102,.12), transparent 25%);
+    }
+    .memory-wrap {
+      width: min(1240px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .memory-showcase {
+      min-height: 560px;
+      position: relative;
+      border-radius: 46px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        linear-gradient(180deg, rgba(7,17,31,.18), rgba(7,17,31,.9)),
+        url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=1600&auto=format&fit=crop') center/cover;
+      box-shadow: var(--shadow);
+    }
+    .photo-strip {
+      position: absolute;
+      inset: auto 22px 22px 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .fake-photo {
+      min-height: 160px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.25);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fake-photo::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      padding: 7px 8px;
+      border-radius: 999px;
+      background: rgba(7,17,31,.75);
+      font-size: .68rem;
+      font-weight: 900;
+      text-align: center;
+      color: white;
+    }
+    .old-photo {
+      filter: sepia(.9) grayscale(.35) contrast(.75) brightness(.82);
+      background-image: url('https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0?q=80&w=900&auto=format&fit=crop');
+    }
+    .bw-photo {
+      filter: grayscale(1) contrast(1.08);
+      background-image: url('https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0?q=80&w=900&auto=format&fit=crop');
+    }
+    .color-photo {
+      filter: contrast(1.05) saturate(1.08);
+      background-image: url('https://images.unsplash.com/photo-1520719627573-5e2c1a6610f0?q=80&w=900&auto=format&fit=crop');
+    }
+    .memory-badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      right: 24px;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(7,17,31,.7);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+    .memory-badge h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .memory-content .soft-script {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--yellow);
+      margin: 12px 0 22px;
+      line-height: 1.2;
+    }
+    .memory-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+    .memory-point {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+    }
+    .memory-point i { color: var(--rose); margin-right: 8px; }
+    .memory-point p { color: var(--muted); margin-top: 6px; font-size: .95rem; }
+    .photo-prices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .photo-price-card {
+      padding: 24px 18px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .photo-price-card:hover { transform: translateY(-8px); border-color: rgba(255,209,102,.55); }
+    .photo-price-card h3 { text-transform: uppercase; font-size: 1rem; color: var(--soft); }
+    .photo-price-card strong {
+      display: block;
+      font-family: 'Montserrat';
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      line-height: 1;
+      color: var(--yellow);
+      margin: 12px 0;
+    }
+    .photo-price-card p { color: var(--muted); font-size: .92rem; }
+    .memory-note {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(251,113,133,.12);
+      border: 1px solid rgba(251,113,133,.35);
+      color: #ffe4e6;
+    }
+
     .projects {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -532,18 +639,8 @@
       transition: var(--transition);
     }
     .project-card:hover { transform: translateY(-10px); border-color: rgba(56,189,248,.42); }
-    .project-media {
-      min-height: 255px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-    .project-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(7,17,31,.72));
-    }
+    .project-media { min-height: 255px; background-size: cover; background-position: center; position: relative; }
+    .project-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(7,17,31,.72)); }
     .project-content { padding: 28px; }
     .project-content h3 { font-size: 1.55rem; margin-bottom: 10px; }
     .project-content p { color: var(--muted); margin-bottom: 18px; }
@@ -562,7 +659,7 @@
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
     }
     .trust-card {
@@ -606,22 +703,9 @@
     .contact-btn:hover { transform: translateX(8px); background: rgba(97,211,148,.14); }
     .contact-btn i { color: var(--green); font-size: 1.3rem; width: 28px; text-align: center; }
 
-    footer {
-      padding: 24px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: rgba(7,17,31,.5);
-    }
+    footer { padding: 24px; text-align: center; color: var(--muted); border-top: 1px solid var(--border); background: rgba(7,17,31,.5); }
 
-    .float-actions {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      gap: 12px;
-      z-index: 1200;
-    }
+    .float-actions { position: fixed; right: 22px; bottom: 22px; display: grid; gap: 12px; z-index: 1200; }
     .float-btn {
       width: 58px;
       height: 58px;
@@ -683,11 +767,19 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: .8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    @media (max-width: 1180px) {
+      .service-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .trust-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav-links { gap: 11px; }
+      .nav-links a { font-size: .72rem; }
+    }
+
     @media (max-width: 1080px) {
-      .hero-grid, .concept-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-grid, .concept-grid, .contact-panel, .memory-wrap { grid-template-columns: 1fr; }
       .hero-visual { min-height: 460px; }
       .bike-card { inset: 30px 20px 40px 20px; }
       .service-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
 
     @media (max-width: 800px) {
@@ -709,7 +801,7 @@
       .nav-links.open { display: flex; }
       .hero { padding-top: 120px; }
       .hero h1 { letter-spacing: -2px; }
-      .hero-stats, .pricing-grid, .projects, .trust-grid { grid-template-columns: 1fr; }
+      .hero-stats, .pricing-grid, .projects, .trust-grid, .photo-prices, .memory-points { grid-template-columns: 1fr; }
       .service-grid { grid-template-columns: 1fr; }
       .hero-visual { display: none; }
       section { padding: 76px 18px; }
@@ -719,6 +811,9 @@
       .float-actions { right: 14px; bottom: 14px; }
       .translate-floating { left: 14px; right: 84px; bottom: 14px; }
       #google_translate_element select { max-width: 100%; }
+      .photo-strip { grid-template-columns: 1fr; position: static; padding: 22px; margin-top: 150px; }
+      .memory-showcase { min-height: auto; }
+      .memory-badge { position: absolute; }
     }
   </style>
 </head>
@@ -746,6 +841,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#concept">Concept</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#souvenirs">Souvenirs</a></li>
         <li><a href="#realisations">Réalisations</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
@@ -759,16 +855,17 @@
         <span class="kicker"><i class="fa-solid fa-leaf"></i> Service humain, mobile et écologique</span>
         <h1>Le numérique <span class="gradient-text">vient jusqu'à vous</span></h1>
         <p class="lead">
-          Accompagnement numérique, création de pages web, vidéos de présentation et petits services de proximité,
-          avec une approche simple, accessible et bienveillante.
+          Accompagnement numérique, création de pages web, vidéos de présentation, restauration de photos anciennes
+          et petits services de proximité, avec une approche simple, accessible et bienveillante.
         </p>
         <div class="hero-actions">
           <a href="#services" class="btn btn-primary"><i class="fa-solid fa-sparkles"></i> Découvrir les services</a>
-          <a href="#tarifs" class="btn btn-secondary"><i class="fa-solid fa-hand-holding-heart"></i> Voir les tarifs sociaux</a>
+          <a href="#souvenirs" class="btn btn-secondary"><i class="fa-solid fa-heart"></i> Restaurer mes souvenirs</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><strong>15€/h</strong><span>avec hébergement offert</span></div>
           <div class="stat"><strong>25€/h</strong><span>sans hébergement</span></div>
+          <div class="stat"><strong>10€</strong><span>restauration photo dès 1 photo</span></div>
           <div class="stat"><strong>10+</strong><span>pages créées pour apprendre et aider</span></div>
         </div>
       </div>
@@ -786,6 +883,9 @@
         </div>
         <div class="pricing-mini">
           <p><b>Recharge vélo</b><br>Accès à une prise demandé pendant le temps de travail.</p>
+        </div>
+        <div class="memory-mini">
+          <p><i class="fa-solid fa-images"></i><b>Souvenirs retrouvés</b><br>Photos anciennes restaurées, noir & blanc, couleur et impression A4.</p>
         </div>
       </div>
     </div>
@@ -822,6 +922,13 @@
           <span class="learn">Détails →</span>
         </article>
 
+        <article class="service-card memory reveal" data-modal="modal-memory">
+          <div class="icon-bubble" style="color:var(--rose)"><i class="fa-solid fa-images"></i></div>
+          <h3>Restauration photos anciennes</h3>
+          <p>Rénovation de photos abîmées, version noir & blanc, version couleur et impression A4 sur papier brillant.</p>
+          <span class="learn">Détails →</span>
+        </article>
+
         <article class="service-card reveal" data-modal="modal-brico">
           <div class="icon-bubble" style="color:var(--purple)"><i class="fa-solid fa-screwdriver-wrench"></i></div>
           <h3>Petits services de proximité</h3>
@@ -838,7 +945,7 @@
       <div class="concept-photo reveal">
         <div class="caption">
           <h3>🚲 Une activité mobile et écologique</h3>
-          <p>Je démarre léger : vélo électrique, sacoches, ordinateurs, téléphone, connexion Internet et petit outillage.</p>
+          <p>Je démarre léger : vélo électrique, sacoches, ordinateurs, téléphone, connexion Internet, imprimante photo et petit outillage.</p>
         </div>
       </div>
 
@@ -852,7 +959,7 @@
           </div>
           <div class="step">
             <div class="step-number">2</div>
-            <div><h3>Nous définissons l'intervention</h3><p>Numérique, site web, vidéo, aide technique ou petits services simples.</p></div>
+            <div><h3>Nous définissons l'intervention</h3><p>Numérique, site web, vidéo, restauration photo, aide technique ou petits services simples.</p></div>
           </div>
           <div class="step">
             <div class="step-number">3</div>
@@ -860,7 +967,7 @@
           </div>
           <div class="step">
             <div class="step-number">4</div>
-            <div><h3>Nous avançons ensemble</h3><p>Je vous accompagne à votre rythme, avec pédagogie, patience et solutions concrètes.</p></div>
+            <div><h3>Nous avançons ensemble</h3><p>Je vous accompagne à votre rythme, avec pédagogie, patience, écoute et solutions concrètes.</p></div>
           </div>
         </div>
       </div>
@@ -885,7 +992,7 @@
             <li><i class="fa-solid fa-check"></i> Hébergement offert : maison, pièce disponible, jardin ou tente.</li>
             <li><i class="fa-solid fa-check"></i> Facturation uniquement pendant le temps de travail réel.</li>
             <li><i class="fa-solid fa-check"></i> Adapté aux personnes, familles, villages ou projets avec budget limité.</li>
-            <li><i class="fa-solid fa-check"></i> Idéal pour accompagnement numérique, création web, vidéo ou petits services.</li>
+            <li><i class="fa-solid fa-check"></i> Idéal pour accompagnement numérique, création web, vidéo, restauration photo ou petits services.</li>
           </ul>
           <div class="recharge"><i class="fa-solid fa-bolt"></i> Accès à une prise demandé pour recharger la batterie du vélo pendant le temps de travail.</div>
         </article>
@@ -902,6 +1009,74 @@
           </ul>
           <div class="recharge"><i class="fa-solid fa-bolt"></i> Accès à une prise demandé pour recharger la batterie du vélo pendant le temps de travail.</div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Souvenirs -->
+  <section id="souvenirs" class="memory-section">
+    <div class="memory-wrap">
+      <div class="memory-showcase reveal">
+        <div class="memory-badge">
+          <h3>Redonner vie aux souvenirs</h3>
+          <p>Restauration de photos anciennes, abîmées, tachées, fanées ou déformées, selon l'état réel du document original.</p>
+        </div>
+        <div class="photo-strip">
+          <div class="fake-photo old-photo" data-label="Photo ancienne"></div>
+          <div class="fake-photo bw-photo" data-label="Noir & blanc restauré"></div>
+          <div class="fake-photo color-photo" data-label="Couleur améliorée"></div>
+        </div>
+      </div>
+
+      <div class="memory-content reveal">
+        <span class="tag">Souvenirs & émotions</span>
+        <h2>Restauration de photos anciennes</h2>
+        <div class="soft-script">Retrouver une image, c'est parfois retrouver une émotion.</div>
+        <p>
+          Ce service permet aux personnes de récupérer une belle version numérique et imprimée de leurs anciennes photographies :
+          amélioration, nettoyage visuel, correction légère, version noir & blanc, version couleur et impression en qualité photo sur papier brillant A4.
+        </p>
+
+        <div class="memory-points">
+          <div class="memory-point">
+            <strong><i class="fa-solid fa-wand-magic-sparkles"></i> Restauration</strong>
+            <p>Amélioration des photos anciennes selon leur état réel.</p>
+          </div>
+          <div class="memory-point">
+            <strong><i class="fa-solid fa-palette"></i> Noir & blanc / couleur</strong>
+            <p>Possibilité de créer une version restaurée classique et une version colorisée.</p>
+          </div>
+          <div class="memory-point">
+            <strong><i class="fa-solid fa-print"></i> Impression A4</strong>
+            <p>Impression qualité photo sur papier brillant au format A4 portrait.</p>
+          </div>
+          <div class="memory-point">
+            <strong><i class="fa-solid fa-music"></i> Mémoire vivante</strong>
+            <p>Aide pour retrouver des musiques, vidéos ou souvenirs d'époque afin de recréer un moment de bien-être.</p>
+          </div>
+        </div>
+
+        <div class="photo-prices">
+          <div class="photo-price-card">
+            <h3>1 photo</h3>
+            <strong>10€</strong>
+            <p>Rénovation + amélioration + impression photo A4 brillante incluse.</p>
+          </div>
+          <div class="photo-price-card">
+            <h3>2 photos</h3>
+            <strong>15€</strong>
+            <p>Rénovation + amélioration + impressions photo A4 brillantes incluses.</p>
+          </div>
+          <div class="photo-price-card">
+            <h3>3 photos</h3>
+            <strong>18€</strong>
+            <p>Rénovation + amélioration + impressions photo A4 brillantes incluses.</p>
+          </div>
+        </div>
+
+        <div class="memory-note">
+          <strong>Note honnête :</strong> les résultats dépendent de la qualité de la photo d'origine. Une photo trop détruite, sans détails visibles ou complètement décomposée, peut avoir des limites techniques.
+        </div>
       </div>
     </div>
   </section>
@@ -964,6 +1139,11 @@
           <h3>Créativité concrète</h3>
           <p>Sites, vidéos, réseaux sociaux, petits conseils : l'objectif est de rendre les choses utiles rapidement.</p>
         </article>
+        <article class="trust-card reveal">
+          <i class="fa-solid fa-photo-film"></i>
+          <h3>Mémoire & bien-être</h3>
+          <p>Photos anciennes, musiques, vidéos et souvenirs : un accompagnement aussi humain qu'émotionnel.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -977,7 +1157,7 @@
           <h2>Parlons de votre besoin</h2>
           <p>
             Vous avez besoin d'aide pour utiliser le numérique, créer une page web, présenter votre commerce,
-            faire une petite vidéo ou résoudre un petit blocage technique ? Contactez-moi pour organiser une intervention.
+            faire une petite vidéo, restaurer une photo ancienne ou résoudre un petit blocage technique ? Contactez-moi pour organiser une intervention.
           </p>
         </div>
         <div class="contact-buttons">
@@ -991,7 +1171,7 @@
   </section>
 
   <footer>
-    <p>© 2026 Michel Quiñones Cobos — Le numérique vient jusqu'à vous. Service mobile, humain et écologique.</p>
+    <p>© 2026 Michel Quiñones Cobos — Le numérique vient jusqu'à vous. Service mobile, humain, écologique et créatif.</p>
   </footer>
 
   <!-- Boutons flottants -->
@@ -1055,6 +1235,25 @@
     </div>
   </div>
 
+  <div class="modal" id="modal-memory">
+    <div class="modal-box">
+      <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=1400&auto=format&fit=crop')"></div>
+      <div class="modal-content">
+        <button class="close" data-close="modal-memory">×</button>
+        <h3>Restauration de photos anciennes</h3>
+        <p>Un service pensé pour redonner de la valeur aux souvenirs familiaux et aux images anciennes.</p>
+        <ul>
+          <li>Rénovation de photos anciennes, tachées, fanées ou abîmées selon possibilités.</li>
+          <li>Version noir & blanc restaurée et possibilité de version colorisée.</li>
+          <li>Impression qualité photo sur papier brillant A4 portrait.</li>
+          <li>Tarifs : 1 photo 10€, 2 photos 15€, 3 photos 18€.</li>
+          <li>Recherche possible de musiques, vidéos ou souvenirs d'époque pour créer un moment de dialogue et de bien-être.</li>
+          <li>Note : certaines photos trop détruites peuvent avoir des limites techniques.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="modal-brico">
     <div class="modal-box">
       <div class="modal-img" style="background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop')"></div>
@@ -1074,7 +1273,6 @@
   </div>
 
   <script>
-    // Navigation fixe : effet au scroll
     const topbar = document.getElementById('topbar');
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
@@ -1091,18 +1289,14 @@
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // Animation d'apparition au scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.13 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Modales services
     document.querySelectorAll('[data-modal]').forEach(card => {
       card.addEventListener('click', () => {
         const modal = document.getElementById(card.dataset.modal);
@@ -1128,7 +1322,6 @@
       }
     });
 
-    // Google Traduction : français, anglais, espagnol
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'fr',
